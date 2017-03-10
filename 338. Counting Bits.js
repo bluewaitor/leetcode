@@ -17,9 +17,11 @@
  * @return {number[]}
  */
 var countBits = function(num) {
-    var res = [];
-    for(var i = 0; i <= num; i++) {
-        res.push(i.toString(2).split('').filter(function(v) {return v == '1'}).length);
+    var res = [0];
+    for(var i = 1; i <= num; i++) {
+        //分析可以发现, 每次要进位, 都是 i 的一半 + 1, 所以可以简化为 f[i] = f[i/2] + i % 2;
+        res[i] = res[Math.floor(i/2)] + i % 2;
+        //res.push(i.toString(2).split('').filter(function(v) {return v == '1'}).length);
     }
     return res;
 };
